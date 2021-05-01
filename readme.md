@@ -12,6 +12,16 @@ Much bigger implementations are planned including:
 
 ---
 
+## Why disro???
+
+- Web connections are socket-like
+	- A lot of systems seen may take significantly long amounts of time to execute commands on roblox, or may exhaust their HTTP calls, disro uses [long polling](https://www.pubnub.com/blog/http-long-polling/) to maintain connections for as long as possible, making sure resources aren't wasted, simultaneously assuring: 1. Near-instant command execution 2. No exhaustive HTTP calls
+- Discord bot framework makes it easy to use
+- Takes minutes to set up
+- Flexible to use on large scale games
+
+---
+
 ## Installation
 
 
