@@ -2,8 +2,8 @@
   	"name": "disro",
   	"version": "1.0.0",
   	"main": "index.js",
-  	"repository": "https://github.com/Zidaan-Hayat/disro.git",
-  	"author": "ZidaanHayat",
+  	"repository": "https://github.com/Zzz9194/disro.git",
+  	"author": "Zzz9194",
   	"license": "Apache-2.0",
   	"scripts": {
   	  	"start": "node ."
