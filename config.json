@@ -1,0 +1,7 @@
+{
+	"botToken": "The bot token given from your application",
+	"botPrefix": "The prefix all your bot commands will use",
+	"ownerId": "Bot owner discord ID (As a string [wrapped in quotes] not as an integer!)",
+    "serverApiKey": "The API key for your server to communicate with the roblox client, can be any random generated string",
+	"moderationRoleId": "The role ID that is required to run game moderation commands, if it's an empty string only game owners will be able to use commands"
+}
