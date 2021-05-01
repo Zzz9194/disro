@@ -29,7 +29,7 @@ Much bigger implementations are planned including:
 
 ```sh
 # Clone this project
-git clone https://github.com/Zidaan-Hayat/disro.git
+git clone https://github.com/Zzz9194/disro.git
 
 # Go into the directory
 cd disro
