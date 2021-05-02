@@ -3,11 +3,11 @@
 local CONNECT_ENDPOINT = "The URL your server is using + the '/rbxwebhook' path at the end"
 local CONNECT_API_KEY = "The same API key you put in your config.json"
 
-local connection = require(script.Parent.WebClient)
+local connection = require(script.Parent.modClient)
 local client = connection.new({ apiKey = CONNECT_API_KEY });
 
 local players = game:GetService("Players")
-local modFuncs = require(script.Parent.ModerationFunctions)
+local modFuncs = require(script.Parent.modFunctions)
 
 client:connect(CONNECT_ENDPOINT)
 
@@ -53,7 +53,7 @@ client:on("toKick", function(data)
 	-- Player not in the game
 	if target == nil then return end
 
-	modFuncs.handleKick(target, moderatorName, data.reason)
+	modFuncs.handleKick(target, data.reason)
 
 end)
 
@@ -62,7 +62,7 @@ client:on("toBan", function(data)
 	local ModeratorName = players:GetNameFromUserIdAsync(data.moderatorId)
 	local TargetName = players:GetNameFromUserIdAsync(data.targetId)
 	
-	modFuncs.handleBan(data.targetId, TargetName, ModeratorName, data.reason)
+	modFuncs.handleBan(data.targetId, data.reason)
 
 end)
 
