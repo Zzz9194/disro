@@ -53,15 +53,17 @@ Edit the `config.json` file.
 
 ### Step 3.
 
-Copy all files in the `roblox/` folder, into a location in your `ServerScriptService`
+Copy the `roblox/ServerFiles.rbxm` **ONLY** into a location in your `ServerScriptService`
 
-Edit the `roblox/serverHandler` with your `serverApiKey` at line 4
+In the event (for some reason) you can't upload the `.rbxm` file, upload the four `.lua` files as ModuleScript's, except `GatewayHandler` which should be a regular Script.
 
-The only thing you need to make sure is that the files share the same Parent (Folder, etc.)
+Once copied, edit the `GatewayHandler` script with your `serverApiKey` at line 4 and your server URL at line 3
+
+_**!**_ Your server URL can not be a local address (E.g. `127.0.0.1:3000`) because Roblox prohibits any HTTP requests to them
 
 _**!**_ Make sure the game is published and HTTP services are enabled in the Permissions section of the "Game Settings"
 
-`Game Settings > Security > Allow HTTP Requests > True`
+`Game Settings > Security > Allow HTTP Requests > Enable`
 
 ### Step 4. 
 
@@ -115,11 +117,11 @@ The dependency manages client connections by assigning a random UUID, for this s
 
 A datastore named "bans" is created and entries are written directly into that datastore with the entry keys being the target user ID and the value being the ban reason
 
-The module to handle all this is in `roblox/banStore`
+The module to handle all this is in `roblox/BanStore`
 
 ### How do I implement my own ban handling/storage system?
 
-Go to `roblox/modFunctions` and you can adjust/re-do the "handleBan" function as you wish
+Go to `roblox/ModFunctions` and you can adjust/re-do the "handleBan" function as you wish
 
 ---
 
