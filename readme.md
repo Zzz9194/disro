@@ -29,7 +29,7 @@ Much bigger implementations are planned including:
 
 ```sh
 # Clone this project
-git clone https://github.com/Zzz9194/disro.git
+git clone https://github.com/Zidaan-Hayat/disro.git
 
 # Go into the directory
 cd disro
@@ -43,10 +43,10 @@ npm install
 Edit the `config.json` file.
 ```json
 {
-	"botToken": "The bot token given from your application",
+	"botToken": "The bot token given from your application (Refer to https://github.com/Zzz9194/disro/wiki#creating--inviting-a-discord-bot)",
 	"botPrefix": "The prefix all your bot commands will use",
 	"ownerId": "Bot owner discord ID (As a string [wrapped in quotes] not as an integer!)",
-    "serverApiKey": "The API key for your server to communicate with the roblox client, can be any random generated string",
+    "serverApiKey": "The API key for your server to communicate with the roblox client, can be any random generated string (Refer to https://github.com/Zzz9194/disro/wiki#generating-a-uuid)",
 	"moderationRoleId": "The role ID that is required to run game moderation commands, if it's an empty string only game owners will be able to use commands"
 }
 ```
@@ -55,11 +55,21 @@ Edit the `config.json` file.
 
 Copy all files in the `roblox/` folder, into a location in your `ServerScriptService`
 
+Edit the `roblox/serverHandler` with your `serverApiKey` at line 4
+
 The only thing you need to make sure is that the files share the same Parent (Folder, etc.)
+
+Make sure the game is published and HTTP services are enabled in the Permissions section of the "Game Settings"
+
+### Step 4. 
+
+Start up your server
+
+Run `npm start` or `node .`
 
 ---
 
-## Commands
+## Discord Bot Commands
 
 `<>` Indicates a required argument
 
@@ -94,6 +104,8 @@ Unban a player from the entire game
 ### Why did you implement [rbxwebhook.js](https://www.npmjs.com/package/rbxwebhook.js) in your code instead of installing the dependency?
 
 The dependency manages client connections by assigning a random UUID, for this system to be a little easier to use, I assign each connection the ID of the server it's connected to. I'm yet to make a pull request for this to the dependency.
+
+(If you run this on Roblox Studio where they don't give server IDs, the router will randomly generate one)
 
 ### How are bans currently handled?
 
