@@ -61,7 +61,7 @@ class GameBanCommand extends (Command) {
 		if (!res) return msg.reply("Failed to connect to the server.")
 		else if (typeof res === "string") return msg.reply(res);
 
-		return msg.reply(`Successfully banned user, ${ !!serverId ? `, also kicked from server \`${serverId}\`.` : '.' }`)
+		return msg.reply(`Successfully banned user ${ !!serverId ? `, also kicked from server \`${serverId}\`.` : '.' }`)
 
 	}
 
