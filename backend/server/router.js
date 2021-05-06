@@ -29,7 +29,7 @@ server.on('connection', c => {
 async function unbanUser(data) {
 	const connection = server.connections[Object.keys(server.connections)[0]];
 
-	connection.send('toUnban', data);
+	connection.send('gameunban', data);
 
 	return true;
 }
@@ -38,7 +38,7 @@ async function kickUser(serverId, data) {
 	const connection = server.connections[serverId];
 	if (!connection) return 'Server wasn\'t found.';
 
-	connection.send('toKick', data);
+	connection.send('gamekick', data);
 
 	return true;
 }
@@ -48,7 +48,7 @@ async function banUser(serverId, data) {
 
     if (serverId !== null && !!server.connections[serverId]) connection = server.connections[serverId];
 
-    connection.send('toBan', data);
+    connection.send('gameban', data);
 
     return true;
 }

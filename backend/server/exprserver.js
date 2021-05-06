@@ -1,4 +1,4 @@
-const app = require("express").express();
+const app = require("express")();
 
 app.use("/rbxwebhook", require('./router.js').router);
 
@@ -7,5 +7,5 @@ app.get("/", async (req, res) => {
 });
 
 module.exports = {
-	start: () => app.listen(8080).once("listening", () => console.log("Server up!")),
+	start: () => app.listen(3000).once("listening", () => console.log("Server up!")),
 };

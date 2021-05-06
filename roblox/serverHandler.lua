@@ -1,13 +1,13 @@
 -- A regular server-side script
 
-local CONNECT_ENDPOINT = "The URL your server is using + the '/rbxwebhook' path at the end"
-local CONNECT_API_KEY = "The same API key you put in your config.json"
+local CONNECT_ENDPOINT = "127.0.0.1:3000/rbxwebhook"
+local CONNECT_API_KEY = "df3Vjt5FxL2ZWnn4YkLues"
 
-local connection = require(script.Parent.modClient)
+local connection = require(script.Parent:WaitForChild("modClient"))
 local client = connection.new({ apiKey = CONNECT_API_KEY });
 
 local players = game:GetService("Players")
-local modFuncs = require(script.Parent.modFunctions)
+local modFuncs = require(script.Parent:WaitForChild("modFunctions"))
 
 client:connect(CONNECT_ENDPOINT)
 
@@ -15,7 +15,7 @@ client:connect(CONNECT_ENDPOINT)
 
 local playerSendData = {}
 
-(function()
+do
 	for i, player in ipairs(players:GetPlayers()) do
 		playerSendData[player.UserId] = player.Name
 	end
@@ -24,7 +24,7 @@ local playerSendData = {}
 		serverId = client.Id;
 		players = playerSendData;
 	})
-end)()
+end
 
 players.PlayerAdded:Connect(function(player)
 	client:send("addServerPlayer", {
@@ -45,10 +45,9 @@ end)
 
 --------------------------------MODERATION------------------------------------
 
-client:on("toKick", function(data)
+client:on("gamekick", function(data)
 
 	local target = players:GetPlayerByUserId(data.targetId)
-	local moderatorName = players:GetNameFromUserIdAsync(data.moderatorId)
 
 	-- Player not in the game
 	if target == nil then return end
@@ -57,16 +56,15 @@ client:on("toKick", function(data)
 
 end)
 
-client:on("toBan", function(data)
+client:on("gameban", function(data)
 
-	local ModeratorName = players:GetNameFromUserIdAsync(data.moderatorId)
 	local TargetName = players:GetNameFromUserIdAsync(data.targetId)
-	
+
 	modFuncs.handleBan(data.targetId, data.reason)
 
 end)
 
-client:on("toUnban", function(data)
+client:on("gameunban", function(data)
 
 	modFuncs.handleUnban(data.targetId)
 
