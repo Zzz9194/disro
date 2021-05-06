@@ -1,6 +1,6 @@
 # [dis](https://discord.com)[ro](https://roblox.com)
 
-Discord -> Roblox moderation system.
+Discord to Roblox moderation system.
 
 This system **only** enables discord-to-roblox moderation, it's up to you to implement roblox-to-roblox systems.
 
@@ -8,7 +8,7 @@ This system **only** enables discord-to-roblox moderation, it's up to you to imp
 Much bigger implementations are planned including:
 - Updating the codebase with more commands for utility usage (Like checking server data, server fps, server uptime, etc.)
 - Cleaning up of the entire codebase cause it is very messy 💀
-- Sorting the roblox-client side code allowing scripters to easily implement additional systems
+- Sorting the roblox-client side code allowing scripters to easily implement additional systems such as server messages, so on.
 
 ---
 
@@ -59,13 +59,17 @@ Edit the `roblox/serverHandler` with your `serverApiKey` at line 4
 
 The only thing you need to make sure is that the files share the same Parent (Folder, etc.)
 
-Make sure the game is published and HTTP services are enabled in the Permissions section of the "Game Settings"
+_**!**_ Make sure the game is published and HTTP services are enabled in the Permissions section of the "Game Settings"
+
+`Game Settings > Security > Allow HTTP Requests > True`
 
 ### Step 4. 
 
 Start up your server
 
 Run `npm start` or `node .`
+
+_**!**_ You can only connect roblox servers after/while the server is alive
 
 ---
 
@@ -128,7 +132,7 @@ Their code repositories are listed below:
 - [Axios](https://www.npmjs.com/package/axios)
 - [Discord.js-commando](https://www.npmjs.com/package/discord.js-commando)
 - [Express](npmjs.com/package/express)
-- [rbxwebhook.js](https://www.npmjs.com/package/rbxwebhook.js) (Custom implementation was made but the essence of the discord -> robox communication is directly from this project)
+- [rbxwebhook.js](https://www.npmjs.com/package/rbxwebhook.js) (Custom implementation was made but the essence of the socket-like communication is directly from this project)
 
 ## Suggestions
 
