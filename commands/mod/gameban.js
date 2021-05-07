@@ -1,4 +1,4 @@
-const { Command } = require("discord.js-commando");
+const { Command } = require('discord.js-commando');
 
 const { banUser } = require('../../backend/server/router');
 const { usernameToUserId } = require('../../backend/roblox');
@@ -13,8 +13,8 @@ class GameBanCommand extends (Command) {
 			memberName: 'gameban',
 			aliases: ['gban'],
 			group: 'mod',
-            description: 'Ban a player from the game',
-            guildOnly: true,
+			description: 'Ban a player from the game',
+			guildOnly: true,
 			throttling: {
 				usages: 3,
 				duration: 30
@@ -36,19 +36,19 @@ class GameBanCommand extends (Command) {
 		});
 	}
 
-    hasPermission(msg) {
+	hasPermission(msg) {
 		return permission(msg);
 	}
 
 	async run(msg, { target, reason }) {
 
 		let targetUid = await usernameToUserId(target);
-		if (!targetUid) return msg.reply("Target user doesn't exist.");
+		if (!targetUid) return msg.reply('Target user doesn\'t exist.');
 
 		const targetName = targetUid.username;
 		targetUid = targetUid.id;
 
-		if (getServers().length <= 0) return msg.reply("There are no ongoing game servers to execute that request.");
+		if (getServers().length <= 0) return msg.reply('There are no ongoing game servers to execute that request.');
 
 		const serverId = getServerIdByPlayerId(targetUid);
 
@@ -58,13 +58,13 @@ class GameBanCommand extends (Command) {
 			reason: reason
 		});
 
-		if (!res) return msg.reply("Failed to connect to the server.")
-		else if (typeof res === "string") return msg.reply(res);
+		if (!res) return msg.reply('Failed to connect to the server.');
+		else if (typeof res === 'string') return msg.reply(res);
 
-		return msg.reply(`Successfully banned user ${ !!serverId ? `, also kicked from server \`${serverId}\`.` : '.' }`)
+		return msg.reply(`Successfully banned user ${ serverId ? `, also kicked from server \`${serverId}\`.` : '.' }`);
 
 	}
 
-};
+}
 
 module.exports = GameBanCommand;

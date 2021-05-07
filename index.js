@@ -10,16 +10,16 @@ const bot = new Client({
 });
 
 bot.registry
-    .registerDefaults()
-    .registerGroup("mod", "Moderation", true)
+	.registerDefaults()
+	.registerGroup('mod', 'Moderation', true)
 	.registerCommandsIn({
-		dirname: join(__dirname, "commands"),
+		dirname: join(__dirname, 'commands'),
 		// Ignore any filename with a prefixing underscore
 		excludeDirs: /_\w+\.?/,
 	});
 
-bot.once("ready", () => {
-	console.log("Bot up!");
+bot.once('ready', () => {
+	console.log('Bot up!');
 });
 
 // Start our server

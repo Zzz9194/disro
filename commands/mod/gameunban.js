@@ -1,4 +1,4 @@
-const { Command } = require("discord.js-commando");
+const { Command } = require('discord.js-commando');
 
 const { getServers } = require('./_servers');
 const { unbanUser } = require('../../backend/server/router');
@@ -37,24 +37,24 @@ class GameUnbanCommand extends (Command) {
 	async run(msg, { target }) {
 
 		let targetUid = await usernameToUserId(target);
-		if (!targetUid) return msg.reply("Target user doesn't exist.");
+		if (!targetUid) return msg.reply('Target user doesn\'t exist.');
 
 		const targetName = targetUid.username;
 		targetUid = targetUid.id;
 
-		if (getServers().length <= 0) return msg.reply("There are no ongoing game servers to execute that request.");
+		if (getServers().length <= 0) return msg.reply('There are no ongoing game servers to execute that request.');
 
 		const res = await unbanUser({
 			targetId: targetUid,
 			targetName: targetName,
 		});
 
-		if (!res) return msg.reply("Failed to connect to the server.")
-		else if (typeof res === "string") return msg.reply(res);
+		if (!res) return msg.reply('Failed to connect to the server.');
+		else if (typeof res === 'string') return msg.reply(res);
 
-		return msg.reply(`Successfully unbanned user.`);
+		return msg.reply('Successfully unbanned user.');
 	}
 
-};
+}
 
 module.exports = GameUnbanCommand;

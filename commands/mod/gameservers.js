@@ -1,9 +1,7 @@
-const { MessageEmbed } = require("discord.js");
-const { Command } = require("discord.js-commando");
+const { MessageEmbed } = require('discord.js');
+const { Command } = require('discord.js-commando');
 
-const { usernameToUserId } = require('../../backend/roblox');
-const { getServerIdByPlayerId, getServerByServerId, servers } = require('./_servers');
-
+const { getServers, getServerByServerId } = require('./_servers');
 const { permission } = require('../../backend/discord');
 
 class GameServersCommand extends (Command) {
@@ -32,29 +30,29 @@ class GameServersCommand extends (Command) {
 
 	hasPermission(msg) {
 		return permission(msg);
-    }
+	}
 
 	async run(msg, { target }) {
 
-		if (Object.keys(servers).length <= 0) return msg.reply('There are no running game servers.');
+		if (getServers().length <= 0) return msg.reply('There are no running game servers.');
 
 		let targetType;
 
-		if (!target) targetType = "all";
-		else targetType = "server";
+		if (!target) targetType = 'all';
+		else targetType = 'server';
 
-		if (targetType == "server") {
+		if (targetType == 'server') {
 			const players = getServerByServerId(target);
-			if (!players) return msg.reply("That server wasn't found.");
+			if (!players) return msg.reply('That server wasn\'t found.');
 
 			await listServerMembers(msg, target, players);
 
-		} else if (targetType == "all") {
+		} else if (targetType == 'all') {
 			const embed = new MessageEmbed()
 				.setTitle('Game Servers')
 				.setColor('RED');
 
-			for (const [ serverId, serverPlayers ] of Object.entries(servers)) {
+			for (const [ serverId, serverPlayers ] of getServers()) {
 				embed.addField(serverId ? serverId : 'Unknown Server ID', `${Object.keys(serverPlayers).length}/20`, true);
 			}
 
@@ -62,10 +60,10 @@ class GameServersCommand extends (Command) {
 		}
 	}
 
-};
+}
 
 async function listServerMembers(msg, serverId, players) {
-    console.log("Function called", serverId, players);
+	console.log('Function called', serverId, players);
 
 	const embed = new MessageEmbed()
 		.setTitle(`${serverId} Players`)

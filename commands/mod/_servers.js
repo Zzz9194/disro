@@ -9,17 +9,17 @@ module.exports.getServerIdByPlayerId = (userId) => {
 	}
 
 	return null;
-}
+};
 
 module.exports.getServers = () => {
 	return Object.keys(servers);
-}
+};
 
 module.exports.getServerByServerId = (serverId) => {
-	const data = servers[serverId]
+	const data = servers[serverId];
 
 	return data ? data : null;
-}
+};
 
 module.exports.isPlayerIngame = (userId) => {
 
@@ -27,6 +27,6 @@ module.exports.isPlayerIngame = (userId) => {
 
 	if (!res) return false;
 	else return true;
-}
+};
 
 module.exports.servers = servers;

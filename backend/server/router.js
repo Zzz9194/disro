@@ -7,10 +7,10 @@ server.on('connection', c => {
 
 	console.log(`Connected to client ${c.id}`);
 
-    c.on('disconnect', () => {
+	c.on('disconnect', () => {
 		if (serversData[c.id]) delete serversData[c.id];
-        console.log(`Disconnected from client ${c.id}`);
-    });
+		console.log(`Disconnected from client ${c.id}`);
+	});
 
 	c.on('allServerPlayers', data => {
 		serversData[data.serverId] = data.players;
@@ -21,7 +21,7 @@ server.on('connection', c => {
 	});
 
 	c.on('removeServerPlayer', data => {
-		delete serversData[data.serverId][data.player.toString()]
+		delete serversData[data.serverId][data.player.toString()];
 	});
 
 });
@@ -44,13 +44,13 @@ async function kickUser(serverId, data) {
 }
 
 async function banUser(serverId, data) {
-    let connection = server.connections[Object.keys(server.connections)[0]]
+	let connection = server.connections[Object.keys(server.connections)[0]];
 
-    if (serverId !== null && !!server.connections[serverId]) connection = server.connections[serverId];
+	if (serverId !== null && !!server.connections[serverId]) connection = server.connections[serverId];
 
-    connection.send('gameban', data);
+	connection.send('gameban', data);
 
-    return true;
+	return true;
 }
 
 module.exports = {

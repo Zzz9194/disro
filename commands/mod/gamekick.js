@@ -1,4 +1,4 @@
-const { Command } = require("discord.js-commando");
+const { Command } = require('discord.js-commando');
 
 const { kickUser } = require('../../backend/server/router');
 const { usernameToUserId } = require('../../backend/roblox');
@@ -39,25 +39,25 @@ class GameKickCommand extends (Command) {
 	async run(msg, { target, reason }) {
 
 		let targetUid = await usernameToUserId(target);
-		if (!targetUid) return msg.reply("Target user doesn't exist.");
+		if (!targetUid) return msg.reply('Target user doesn\'t exist.');
 
 		targetUid = targetUid.id;
 
-		if (getServers().length <= 0) return msg.reply("There are no ongoing game servers.");
+		if (getServers().length <= 0) return msg.reply('There are no ongoing game servers.');
 
 		const serverId = getServerIdByPlayerId(targetUid);
 
-		if (!serverId) return msg.reply("Target isn't in a server.");
+		if (!serverId) return msg.reply('Target isn\'t in a server.');
 
 		const res = await kickUser(serverId, { targetId: targetUid, reason: reason });
 
-		if (!res) return msg.reply("Failed to connect to the server.")
-		else if (typeof res === "string") return msg.reply(res);
+		if (!res) return msg.reply('Failed to connect to the server.');
+		else if (typeof res === 'string') return msg.reply(res);
 
 		return msg.reply(`Successfully kicked in server \`${serverId}\`.`);
 
 	}
 
-};
+}
 
 module.exports = GameKickCommand;
